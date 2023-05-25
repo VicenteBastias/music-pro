@@ -10,6 +10,8 @@ import NoPage from "./pages/NoPage";
 import reportWebVitals from './reportWebVitals';
 import ApiProfe from './pages/ApiProfe';
 
+const user_id = React.createContext(null)
+
 export default function Build() {
   return (
     <React.StrictMode>

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { Navigate } from 'react-router-dom';
 
 function Home() {
-    const [authenticated, setauthenticated] = useState(null);
+    //const [authenticated, setauthenticated] = useState(null);
     // useEffect(() => {
     //     const loggedInUser = localStorage.getItem("authenticated");
     //     if (loggedInUser) {

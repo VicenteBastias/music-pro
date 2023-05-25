@@ -25,29 +25,26 @@ const Login = () => {
     const inputUsuario = useRef("");
     const inputContrasena = useRef("");
     const [authenticated, setauthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated")|| false));
-    const handleClick = (e) => {
+    const  handleClick = async (e) => {
         if (inputUsuario.current.value === "") {
             return alert("ingrese usuario");
         }
         if (inputContrasena.current.value === "") {
             return alert("ingrese contraseña")
         }
-    e.preventDefault()
-    const usuario = inputUsuario.current.value
-    const contrasena = inputContrasena.current.value
-    fetch(`http://localhost:5000/login?usuario=${inputUsuario.current.value}&contrasena=${inputContrasena.current.value}`).then(
-        function(response) {
-            console.log(response)
-            if (response.status === 200) {
-                setauthenticated(true)
-                localStorage.setItem("authenticated", true);
-                navigate("/Tarjeta")
-                
-            }else {
-                alert("Usuario y/o contraseña incorretos")
-            }
-
-        })
+        e.preventDefault()
+        const usuario = inputUsuario.current.value
+        const contrasena = inputContrasena.current.value
+        const  login = await fetch(`http://localhost:5000/login?usuario=${inputUsuario.current.value}&contrasena=${inputContrasena.current.value}`)
+        const loginData = await login.json()
+        const id_usuario = loginData[0].id
+        if (login.status === 200) {
+            setauthenticated(true)
+            localStorage.setItem("authenticated", true);
+            navigate(`/Tarjeta?id=${id_usuario}`)
+        }else {
+            alert("Usuario y/o contraseña incorretos")
+        }      
     }
     return (
         <form>
@@ -60,12 +57,9 @@ const Login = () => {
                 <label class="form-label" for="Contrasena">Contraseña</label>
             </div>
             <button type="button" class="btn btn-primary btn-block mb-4" onClick={handleClick}>Ingresar</button>
-        </form>
-        
-       
+        </form>       
     );
 }
-
 
 
 export default Login
