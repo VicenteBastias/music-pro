@@ -9,6 +9,7 @@ import Tarjeta from './pages/Tarjeta';
 import NoPage from "./pages/NoPage";
 import reportWebVitals from './reportWebVitals';
 import ApiProfe from './pages/ApiProfe';
+import Transferencia from './pages/Transferencia';
 
 const user_id = React.createContext(null)
 
@@ -23,6 +24,7 @@ export default function Build() {
             <Route path="Tarjeta" element={<Tarjeta />} />
             <Route path="*" element={<NoPage />} />
             <Route path="ApiProfe" element={<ApiProfe />} />
+            <Route path="Transferencia" element={<Transferencia />} />
           </Route>
         </Routes>
       </BrowserRouter>
