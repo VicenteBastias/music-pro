@@ -14,8 +14,8 @@ function Transferencia() {
     const handleClick = (e) => {
         const tarjetaDestino = inputTarjeta.current.value
         const monto = inputMonto.current.value
-        
-        fetch(`http://localhost:5000/TransferenciaExterno?monto=${monto}&tarjetaDestino=${tarjetaDestino}&idUsuario=${id_usuario}`)     
+        const comentario = inputComentario.current.value
+        fetch(`http://localhost:5000/TransferenciaExterno?monto=${monto}&tarjetaDestino=${tarjetaDestino}&idUsuario=${id_usuario}&comentario=${comentario}`)     
         e.preventDefault() 
     }
     useEffect(() =>{
@@ -37,11 +37,11 @@ function Transferencia() {
         <><h2>Transferir</h2>
         <div className='container'>
             <h3>Tarjeta Destino</h3>
-            <input type="text" id="Saldo" class="form-control" ref={inputTarjeta} />
+            <input type="text" id="tarjetaDestino" class="form-control" ref={inputTarjeta} />
             <h3>Monto</h3>
-            <input type="text" id="Saldo" class="form-control"  ref={inputMonto}/>
+            <input type="text" id="Monto" class="form-control"  ref={inputMonto}/>
             <h3>Comentario</h3>
-            <input type="text" id="Saldo" class="form-control"  ref={inputComentario}/>
+            <input type="text" id="Comentario" class="form-control"  ref={inputComentario}/>
             <div>
                 <button type="button" class="btn btn-primary btn-block mb-4"onClick={handleClick}>Transferir</button>
             </div>
